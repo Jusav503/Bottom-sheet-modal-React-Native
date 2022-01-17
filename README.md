@@ -1,6 +1,6 @@
 # React Native Bottom Sheet
 
-Using @gorhom/react-native-bottom-sheet library
+Using <a href="https://gorhom.github.io/react-native-bottom-sheet/">@gorhom/react-native-bottom-sheet</a> library
 
 Requirements:
 <ul>
