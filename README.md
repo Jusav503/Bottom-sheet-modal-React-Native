@@ -16,10 +16,45 @@ Requirements:
 STEPS:
 
 - Hooks and callbacks
-<img src="https://github-images-jusav.s3.eu-central-1.amazonaws.com/bottomsheetmodal6.jpg.png" width="600" />
 
+```js
+const InfoBottomModal = () => {
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const snapPoints = useMemo(() => ["25%", "50%"], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+    setIsOpen(true);
+  }, []);
+
+  return ( 
+```
+  
 - Structure
-<img src="https://github-images-jusav.s3.eu-central-1.amazonaws.com/bottomsheetmodal4.jpg.png" width="600" />
-
-- Bottom sheet modal
-<img src="https://github-images-jusav.s3.eu-central-1.amazonaws.com/bottomsheetmodal5.jpg.png" width="600" />
+```js
+ return (
+    <GestureHandlerRootView>
+        <View style={{ backgroundColor: isOpen ? "#00000090" : "white" }}>
+          <TouchableOpacity onPress={handlePresentModalPress}>
+            <Text>ejemplo</Text>
+          </TouchableOpacity>
+        
+          <BottomSheetModalProvider>
+            <BottomSheetModal
+              ref={bottomSheetModalRef}
+              index={1}
+              snapPoints={snapPoints}
+              onDismiss={() => setIsOpen(false)}
+            >
+              <View style={styles.contentContainer}>
+                <Text>ejemplo</Text>
+              </View>
+            </BottomSheetModal>
+          </BottomSheetModalProvider>
+        </View>
+    </GestureHandlerRootView>
+  );
+};
+```
